@@ -5,9 +5,9 @@ This project is a modular UART (Universal Asynchronous Receiver/Transmitter) imp
 
 ## Project Structure
 The repository contains the following Verilog files:
-- **`baud_gen.v`**: Generates baud rate and 16x oversampling pulses for the transmitter and receiver.
-- **`tx_unit.v`**: Serializes 8-bit parallel data into a serial stream with start and stop bits.
-- **`rx_unit.v`**: Deserializes incoming serial data, performs 16x oversampling, and detects errors.
+- **`baud_rate_gen.v`**: Generates baud rate and 16x oversampling pulses for the transmitter and receiver.
+- **`uart_tx.v`**: Serializes 8-bit parallel data into a serial stream with start and stop bits.
+- **`uart_rx.v`**: Deserializes incoming serial data, performs 16x oversampling, and detects errors.
 - **`uart.v`**: Integrates the baud rate generator, transmitter, and receiver into a complete UART system.
 - **`uart_test.v`**: Testbench to verify UART functionality by sending and receiving test data.
 
@@ -20,17 +20,13 @@ The repository contains the following Verilog files:
 
 ## Usage
 1. **Simulation**:
-   - Use a Verilog simulator (e.g., ModelSim, Vivado, or Icarus Verilog).
-   - Compile all Verilog files (`baud_gen.v`, `tx_unit.v`, `rx_unit.v`, `uart.v`, `uart_test.v`).
+   - Use a Verilog simulator
+   - Compile all Verilog files (`baud_rate_gen.v`, `uart_rx.v`, `uart_tx.v`, `uart.v`, `uart_test.v`).
    - Run the simulation with `uart_test.v` as the top module to verify functionality.
    - The testbench sends test data (`0xAA`, `0x55`) and checks for correct reception.
 
-2. **Customization**:
-   - Modify `baud_gen.v` to adjust the baud rate or clock frequency by updating the divisors (`5208` for baud rate, `324` for 16x sampling).
-   - Example: For a 100 MHz clock and 9600 baud, set `BAUD_COUNT = 10417` and `SAMPLE_COUNT = 651`.
-
-3. **Synthesis**:
-   - The design is synthesizable for FPGA implementation (e.g., on Xilinx or Altera boards).
+2. **Synthesis**:
+   - The design is synthesizable for FPGA implementation
    - Ensure the target FPGA clock matches the 50 MHz assumption or adjust divisors accordingly.
 
 ## Baud Rate Configuration
