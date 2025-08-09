@@ -9,7 +9,7 @@ The repository contains the following Verilog files:
 - **`uart_tx.v`**: Serializes 8-bit parallel data into a serial stream with start and stop bits.
 - **`uart_rx.v`**: Deserializes incoming serial data, performs 16x oversampling, and detects errors.
 - **`uart.v`**: Integrates the baud rate generator, transmitter, and receiver into a complete UART system.
-- **`uart_test.v`**: Testbench to verify UART functionality by sending and receiving test data.
+- **`uart_tb.v`**: Testbench to verify UART functionality by sending and receiving test data.
 
 ## Features
 - 8-bit data, 1 start bit, 1 stop bit, no parity.
@@ -21,8 +21,8 @@ The repository contains the following Verilog files:
 ## Usage
 1. **Simulation**:
    - Use a Verilog simulator
-   - Compile all Verilog files (`baud_rate_gen.v`, `uart_rx.v`, `uart_tx.v`, `uart.v`, `uart_test.v`).
-   - Run the simulation with `uart_test.v` as the top module to verify functionality.
+   - Compile all Verilog files (`baud_rate_gen.v`, `uart_rx.v`, `uart_tx.v`, `uart.v`, `uart_tb.v`).
+   - Run the simulation with `uart_tb.v` as the top module to verify functionality.
    - The testbench sends test data (`0xAA`, `0x55`) and checks for correct reception.
 
 2. **Synthesis**:
@@ -36,4 +36,4 @@ The repository contains the following Verilog files:
 - **Sample Divisor**: \( \frac{50,000,000}{16 \times 9600} \approx 325 \).
 
 ## Testbench
-The testbench (`uart_test.v`) performs loopback testing by connecting the transmitter output to the receiver input. It sends two test bytes (`0xAA`, `0x55`) and checks if they are received correctly without errors. Simulation results are displayed via `$display` statements.
+The testbench (`uart_tb.v`) performs loopback testing by connecting the transmitter output to the receiver input. It sends two test bytes (`0xAA`, `0x55`) and checks if they are received correctly without errors. Simulation results are displayed via `$display` statements.
